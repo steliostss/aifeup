@@ -1,5 +1,3 @@
-import matplotlib as plt
-
 # - = Empty
 # I = Ice
 # U = User
@@ -19,21 +17,15 @@ import matplotlib as plt
 
 Lives = 6
 
+# read the world line by line
+# give as argument the level you want to play
 def read_world (levelid):
     levelid = str(levelid) 
     with open("./levels/level"+levelid+".txt") as f:
-        lines = f.read().splitlines()
-    return lines
+        world = [line.split() for line in f]
+    return world
 
-world = []
+world = read_world (1) # read world
 
-lines = read_world (1)
-
-for i in lines:
-    world.append(i)
-
-    # for spot in i: 
-    #     world.append(spot)
-
-for line in world:
-    print (line)
+for i in world:
+    print(i)
