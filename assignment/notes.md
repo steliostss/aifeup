@@ -36,15 +36,35 @@ Below are be the capabilities of the game and the conditions that we should meet
 
 ### Moving User
 
-To be able to move the user in a specific direction then you should check if the target position is wall or hole. If so the user cannot move there. 
+To be able to move the user in a specific direction then we should make some checks.
 
-If the target position is empty space then user moves there and the previous position becomes empty space.
+If the target position is:
 
-If nothing else succeeds then the empty space is a box. Then check [Moving boxes](#moving-boxes).
+1. wall or hole, the user cannot move there.
+2. empty space then user moves there and the previous position becomes empty space.
+3. a box, then check [Moving boxes](#moving-boxes).
 
 ### Moving boxes
+
+In order for the user to move a box we should check what is in the position next to the box, towards the direction that the user moves.
+
+If the target position is:
+
+1. wall or box, then we can't move the box, so the user doesn't move.
+2. hole, then the box *[fills](#filling-holes)* the hole and and the user occupies the box'es previous position.
+3. empty space, then the user occupies the box's previous position and we should also check the box's type. It can be either:
+    1. [normal box](#normal-boxes)
+    2. [ice box](#ice-boxes)
+
 #### Ice boxes
+
+
 #### Normal boxes
+
+
+#### Filling holes
+
+
 ### Finishing the game
 
 
