@@ -40,7 +40,7 @@ To be able to move the user in a specific direction then you should check if the
 
 If the target position is empty space then user moves there and the previous position becomes empty space.
 
-If nothing else succeeds then the empty space is a box. Then check [Moving boxes](### Moving Boxes).
+If nothing else succeeds then the empty space is a box. Then check [Moving boxes](#moving-boxes).
 
 ### Moving boxes
 #### Ice boxes
