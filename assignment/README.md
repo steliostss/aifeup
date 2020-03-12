@@ -1,8 +1,8 @@
 
 
-# Artificial Intelligence / InteligênciaArtificial
+# Artificial Intelligence
 
-Intermediate report
+Intermediate report for the course of Artificial Intelligence (IART) during summer semester 2019-2020 
 
 ### Students / Authors
 - Stylianos Tsagkarakis *up201911231*
