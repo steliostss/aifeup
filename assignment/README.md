@@ -25,4 +25,9 @@ Then we need to compare the different research methods based on the quality of t
 
 In the program we transform the game level to a 2D array.
 
+![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png) ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
+
+
+
+
 
