@@ -8,7 +8,7 @@
 
 import User as usr
 import World as wd
-
+    
 def main ():
     
     # check if program is called with the correct arguments
