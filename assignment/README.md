@@ -37,5 +37,5 @@ This is the state representation:
 
 ![Diagram](https://github.com/steliostss/aifeup/blob/master/assignment/Images/Diagram.png)
 
-###Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
+### Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
 ![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif)
