@@ -21,11 +21,17 @@ For this assignment we need to create a program that is able to solve different 
 
 Then we need to compare the different research methods based on the quality of the obtained solution, the total number of operations occured and the time taken to obtain the solution. Furthermore the program must have some kind of visualization whether text-based or graphical so the user can see the evolution of the board. Finally the program must be able to solve the game by its own using the method and the board configuration provided by the user. Optionally a game mode that the user plays and asks the program for "tips" could be implemented.
 
-## 2. Formulating the problem as a research problem
+## 3. Formulating the problem as a research problem
 
-In the program we transform the game level ![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png) to a 2D array ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png).
+In the program we transform the game level to a 2D array.
 
+![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
+![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
 
+The initial state is the position of the user on the table and the final state is the exit position. The operators are the keys W,A,S,D which respectively move the user Up, Left, Right and Down.
 
+This is the state representation:
+
+![Diagram](https://github.com/steliostss/aifeup/blob/master/assignment/Images/Diagram.png)
 
 
