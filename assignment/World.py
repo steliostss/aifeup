@@ -52,7 +52,7 @@ class World:
         else: # _direction = 'D'
             self.position = (x, y+1)
 
-    def find_user_position(self, ):
+    def find_user_position(self):
         # this function searches the grid and looks for
         # the position of the user. it returns a tuple
         # with the coordinates
@@ -63,7 +63,7 @@ class World:
             j = 0
             while j < sizeY:
                 if self.map[i][j] == 'U':
-                    user_position = (i, j)
+                    self.userposition = (i, j)
                     return
                 j+=1
             i+=1
