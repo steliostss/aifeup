@@ -12,9 +12,9 @@ Intermediate report for the course of Artificial Intelligence (IART) during summ
 
 For this assignment we need to create a program that is able to solve different levels of the game using the following research methods:
 
-1. Search in Width
-2. Search in Depth
-3. Prograssive Deepening
+1. Breadth-first search
+2. Depth-first search
+3. Iterative Deepening
 4. Uniform Cost
 5. Greedy Search
 6. A*
