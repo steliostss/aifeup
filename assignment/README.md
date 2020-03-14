@@ -28,7 +28,10 @@ In the program we transform the game level to a 2D array.
 ![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
 ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
 
-The initial state is the position of the user on the table and the final state is the exit position. The operators are the keys W,A,S,D which respectively move the user Up, Left, Right and Down.
+The initial state is the position of the user on the table when the level begins and the final state is the exit position. The operators are the keys W,A,S,D which respectively move the user Up, Left, Right and Down. The preconditions are:
+
+1. where the player wants to be an empty space, meaning no boxes, holes or wall, then the space becomes the player's position and the previous one becomes empty. 
+2. To move a box, it is required the next place after the box, towards the direction the user wants to move it, to be empty or a hole. If it is a hole, when the box falls in to the hole it becomes empty space. Otherwise the box covers the next spot, the user covers the spot previously owned by the box and the place that the user was before, becomes empty.
 
 This is the state representation:
 
