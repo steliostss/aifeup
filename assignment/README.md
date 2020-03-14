@@ -21,4 +21,8 @@ For this assignment we need to create a program that is able to solve different 
 
 Then we need to compare the different research methods based on the quality of the obtained solution, the total number of operations occured and the time taken to obtain the solution. Furthermore the program must have some kind of visualization whether text-based or graphical so the user can see the evolution of the board. Finally the program must be able to solve the game by its own using the method and the board configuration provided by the user. Optionally a game mode that the user plays and asks the program for "tips" could be implemented.
 
-## 2. 
+## 2. Formulating the problem as a research problem
+
+In the program we transform the game level to a 2D array.
+
+
