@@ -105,6 +105,9 @@ Of course the search algorithms should also be implemented.
 
 
 ### Side by side comparison of how the players moves between the actual game (*left*) and the program (*right*) progressing throught the level 2.
+
+Clicking on the image will take you to the GIF representing the moves.
+
 ![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_level2.gif)
 
 
