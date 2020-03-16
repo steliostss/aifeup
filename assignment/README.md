@@ -23,11 +23,6 @@ Then we need to compare the different research methods based on the quality of t
 
 ## 3. Formulating the problem as a research problem
 
-In the program we transform the game level to a 2D array.
-
-![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
-![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
-
 The initial state is the position of the user on the table when the level begins and the final state is the exit position. The operators are the keys W,A,S,D which respectively move the user Up, Left, Right and Down. The preconditions are:
 
 1. where the player wants to be an empty space, meaning no boxes, holes or wall, then the space becomes the player's position and the previous one becomes empty. 
@@ -37,5 +32,13 @@ This is the state representation:
 
 ![Diagram](https://github.com/steliostss/aifeup/blob/master/assignment/Images/Diagram.png)
 
+## 4. Implementation of the work already done
+
+The program will be written in Python and uploaded at a Github repository. Already the basic structure of it is created and the next step is to implement the search algorithms to the program. In the program we transform each game level to txt file and we read from it and create a 2D array. Example below:
+
+![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
+![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
+
+
 ### Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
-![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif)
+![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_leve2.gif)
