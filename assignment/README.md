@@ -34,10 +34,10 @@ This is the state representation:
 
 ## 4. Implementation of the work already done
 
-The program will be written in Python and uploaded at a Github repository. Already the basic structure of it is created and the next step is to implement the search algorithms to the program. In the program we transform each game level to txt file and we read from it and create a 2D array. Example below:
+The program will be written in Python and uploaded at a Github repository. Already the basic structure of it is created and the next step is to implement the search algorithms to the program. In the program we transform each game level to txt file and we read from it in order to create a 2D array that represents each level. Example below:
 
-![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
-![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
+From this : ![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
+ to this : ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
 
 
 ### Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
