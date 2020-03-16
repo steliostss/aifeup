@@ -1,6 +1,10 @@
 # Artificial Intelligence
 
-Intermediate report for the course of Artificial Intelligence (IART) during summer semester 2019-2020 
+Intermediate report for the course of Artificial Intelligence (IART) during summer semester 2019-2020.
+
+## 0. Github Repository
+
+The project is hosted in an public github repository [here](https://github.com/steliostss/aifeup).
 
 ### Students / Authors
 - Stylianos Tsagkarakis *up201911231*
