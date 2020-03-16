@@ -21,6 +21,12 @@ For this assignment we need to create a program that is able to solve different 
 
 Then we need to compare the different research methods based on the quality of the obtained solution, the total number of operations occured and the time taken to obtain the solution. Furthermore the program must have some kind of visualization whether text-based or graphical so the user can see the evolution of the board. Finally the program must be able to solve the game by its own using the method and the board configuration provided by the user. Optionally a game mode that the user plays and asks the program for "tips" could be implemented.
 
+## 2. Research (articles, web pages, source codes)
+
+* [8 Reasons to Use Python for AI](https://djangostars.com/blog/why-python-is-good-for-artificial-intelligence-and-machine-learning/)
+* [Create Your Own Reinforcement Learning Environment](https://towardsdatascience.com/create-your-own-reinforcement-learning-environment-beb12f4151ef)
+* [Pathfinding in Strategy Games and Maze Solving](https://www.researchgate.net/publication/307955673_Pathfinding_in_Strategy_Games_and_Maze_Solving_Using_A_Search_Algorithm)
+
 ## 3. Formulating the problem as a research problem
 
 The initial state is the position of the user on the table when the level begins and the final state is the exit position. The operators are the keys W,A,S,D which respectively move the user Up, Left, Right and Down. The preconditions are:
@@ -34,11 +40,13 @@ This is the state representation:
 
 ## 4. Implementation of the work already done
 
-The program will be written in Python and uploaded at a Github repository. Already the basic structure of it is created and the next step is to implement the search algorithms to the program. In the program we transform each game level to txt file and we read from it in order to create a 2D array that represents each level. Example below:
+The program will be written in **Python** and uploaded at a Github repository. The programming enviroment is Visual Studio Code. Already the basic structure is created and the next step is to implement the search algorithms to the program. In it, we transform each game level to txt file and we read from it in order to create a 2D array that represents each level. Example below:
 
 From this : ![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
  to this : ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
 
+The player has the ability to choose which level wants to play and to move around the board using the WASD and can have a visual representation of his/her movements.
 
-### Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
+### Side by side comparison of how the players moves between the actual game (*left*) and the program (*right*) progressing throught the level 2.
 ![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_level2.gif)
+
