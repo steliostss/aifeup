@@ -41,4 +41,4 @@ The program will be written in Python and uploaded at a Github repository. Alrea
 
 
 ### Side by side comparison between the actual game (*left*) and the program (*right*) progressing throught the level 2.
-![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_leve2.gif)
+![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_level2.gif)
