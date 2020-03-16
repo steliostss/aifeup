@@ -44,13 +44,66 @@ This is the state representation:
 
 ## 4. Implementation of the work already done
 
-The program will be written in **Python** and uploaded at a Github repository. The programming enviroment is Visual Studio Code. Already the basic structure is created and the next step is to implement the search algorithms to the program. In it, we transform each game level to txt file and we read from it in order to create a 2D array that represents each level. Example below:
+The application will be written in **Python** using The programming enviroment is Visual Studio Code as IDE.
+
+### Input
+
+Each map will be represented by a 2D array. We transformed each level into a text file as shown below.
 
 From this : ![BoxWorld2 Level2](https://github.com/steliostss/aifeup/blob/master/assignment/Images/boxworld2_level2.png)
  to this : ![Program Array](https://github.com/steliostss/aifeup/blob/master/assignment/Images/program_array.png)
 
 The player has the ability to choose which level wants to play and to move around the board using the WASD and can have a visual representation of his/her movements.
 
+### Idea of implementation
+
+We wanted to eliminate if cases as much as possible, to avoid confusion and repetitiveness. Using pythons string concatenation ability we will make a switch case like that:
+
+```python
+
+def switch_case (first, second):
+    switcher = {
+        "user"   : 'U' ,
+        "box"    : 'B' ,
+        "ice"    : 'I' ,
+        "hole"   : 'H' ,
+        "wall"   : 'W' ,
+        "finish" : 'F' ,
+        "space"  : '-'
+    }
+    first = switcher.get(first, "error")
+    second = switcher.get(second, "error")
+    action_func = first+"_and_"+second
+    return action_func
+
+```
+First and second are supposed to be the items that interact during the game. After getting the function name, it will be called like that: 
+
+```python
+
+    action_func(arguments)
+    
+    # list of action_funcs:
+    
+    def user_and_space (world, direction):
+    def user_and_box (world, direction):
+    def user_and_finish (world, direction):
+    def user_and_ice (world, direction):
+    def user_and_wall (world, direction):
+    def user_and_hole (world, direction):
+    def box_and_wall (world, direction):
+    def box_and_hole (world, direction):
+    def ice_and_wall (world, direction):
+    def ice_and_hole (world, direction):
+
+```
+
+The basic structure is the one mentioned above.
+The next step is to implement these functions that will use other helper function to update positions.
+Of course the search algorithms should also be implemented.
+
+
 ### Side by side comparison of how the players moves between the actual game (*left*) and the program (*right*) progressing throught the level 2.
 ![Game Solution GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/level2_solution.gif) ![Program Array GIF](https://github.com/steliostss/aifeup/blob/master/assignment/Images/array_level2.gif)
+
 
