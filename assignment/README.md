@@ -81,9 +81,10 @@ First and second are supposed to be the items that interact during the game. Aft
 
 ```python
 
-    action_func(arguments)
-    
-    # list of action_funcs:
+    function = switch_case(arg1, arg2)
+    function()
+
+    # list of possible action_funcs:
     
     def user_and_space (world, direction):
     def user_and_box (world, direction):
