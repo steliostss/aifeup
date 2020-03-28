@@ -20,7 +20,7 @@ def main ():
         exit(1)
 
     level = sys.argv[1]
-    world = wd.World(level)
+    world = wd.World(level,6)
     world.print_world()
     print("position is: ", world.userposition)
     # fun.user_and_space(world,'w')
