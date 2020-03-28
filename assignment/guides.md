@@ -17,7 +17,7 @@ This function calculates if the user can move using the map and user_position at
 #### Arguments
 
 This function has 3 arguments: 
-| Argument  | Type of argument | Default Value |
+| Argument  | Type             | Default Value |
 |-----------|------------------|---------------|
 | world     | <class 'World'>  | -             |
 | direction | <class 'str'>    | -             |
@@ -25,9 +25,10 @@ This function has 3 arguments:
 
 #### Return Value
 
-This function returns either: 
-- True : on succesful movement (e.g. user + space interaction)
-- False : on failed movement (e.g. user + wall interaction)
+| Return Value  | When                    | Example                  |
+|---------------|-------------------------|--------------------------|
+| True          | On succesful movement   | user + space interaction |
+| False         | On failed movement      | user + wall interaction  |
 
 ##### Note:
 
