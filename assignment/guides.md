@@ -69,5 +69,4 @@ while ( not finish_condition ):
 
     # this way, everytime a new instance of the class is added to the queue.
     # and use the previous if we made a mistake
-    
 ```
