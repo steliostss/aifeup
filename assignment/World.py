@@ -52,7 +52,8 @@ class World:
             (0,-1)  : 'a', # left
             (0,1)   : 'd'  # right
         }
-
+        if self.map[i][j] == 'W':
+            return
         for dir_tuple in directions:
             x , y = tuple(map(sum, zip( (i,j), dir_tuple)))
             condition = (x >= 0 and x < self.X and y >= 0 and y < self.Y)
