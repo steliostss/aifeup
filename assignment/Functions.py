@@ -1,6 +1,16 @@
 import World as wd
 import operator
 
+def move(world, direction, steps=1):
+    X, Y = world.userposition
+    targetX = X
+    targetY = Y
+    movement = world.decide_move(direction)
+    
+    # TODO: 
+    # return movement(steps)
+    # movement function will return True on success of False on Failure
+
 def object_interaction_function(_first, _second):
     switcher = {
         'U' : "user"   ,
@@ -56,7 +66,6 @@ def user_and_space (world, _direction):
 def user_and_box (world, _direction):
     ( x , y ) = world.userposition
     direction_tuple = create_direction_tuple(_direction)
-
     
 def user_and_finish (world, _direction):
     ( x , y ) = world.userposition
@@ -79,13 +88,22 @@ def box_and_wall (world, _direction):
 def box_and_hole (world, _direction):
     ( x , y ) = world.userposition
     direction_tuple = create_direction_tuple(_direction)
+    pass
 
 def ice_and_wall (world, _direction):
     return False
 
 def ice_and_space (world, _direction):
-    
+    pass
+
 def ice_and_hole (world, _direction):
     ( x , y ) = world.userposition
     direction_tuple = create_direction_tuple(_direction)
 
+def initialize2DList(X, Y):
+    mylist = []
+    for i in range(X):
+        mylist.append([])
+        for j in range(Y):
+            mylist[i].append([])
+    return mylist
