@@ -35,7 +35,7 @@ class World:
         movement = movements.get(direction, "error")
         move_func = "move"+'_'+movement
         # the move_func variable holds the name of 
-        # the function that will be called to 
+        # # the function that will be called to 
         # move to the specific direction.
         # it can be called with move_func()
         return move_func

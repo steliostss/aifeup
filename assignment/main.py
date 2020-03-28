@@ -6,9 +6,11 @@
 
 '''
 
+import sys
+
 import User as usr
 import World as wd
-import sys
+import Functions as fun
 
 def main ():
 
@@ -20,6 +22,11 @@ def main ():
     level = sys.argv[1]
     world = wd.World(level)
     world.print_world()
+    print("position is: ", world.userposition)
+    # fun.user_and_space(world,'w')
+    # print("going up")
+    # world.print_world()
+    # print("position is: ", world.userposition)
 
 if __name__ == "__main__":
     main()
