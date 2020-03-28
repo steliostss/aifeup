@@ -18,7 +18,7 @@ def main ():
         exit(1)
 
     level = sys.argv[1]
-    world = wd.World(level)
+    world = wd.World(level,6)
     world.print_world()
 
 if __name__ == "__main__":
