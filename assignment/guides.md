@@ -17,9 +17,11 @@ This function calculates if the user can move using the map and user_position at
 #### Arguments
 
 This function has 3 arguments: 
-1. world : instance of class World
-2. direction : one of ( 'a' , 's' , 'd' , 'w')
-3. steps : by default 1 
+| Argument  | Type of argument | Default Value |
+|-----------|------------------|---------------|
+| world     | <class 'World'>  | -             |
+| direction | <class 'str'>    | -             |
+| steps     | <class 'int'>    | 1             |
 
 #### Return Value
 
