@@ -15,7 +15,7 @@ class World:
         self.path.append(self.userposition)
         self.available_movements = fun.initialize2DList(self.X, self.Y)
         self.update_available_movements()
-    
+
     def find_user_position(self):
         # this function searches the grid and looks for
         # the position of the user. it returns a tuple
@@ -54,12 +54,14 @@ class World:
         }
         if self.map[i][j] == 'W' or self.map[i][j] == 'F' or self.map[i][j] == 'H':
             return
+        self.available_movements[i][j] = []
         for dir_tuple in directions:
             x , y = tuple(map(sum, zip( (i,j), dir_tuple)))
             condition = (x >= 0 and x < self.X and y >= 0 and y < self.Y)
             if condition:
                 if self.map[x][y] != 'W':
                     self.available_movements[i][j].append(directions.get(dir_tuple))
+                    print(self.available_movements[i][j])
 
     def print_world (self):
         for i in self.map: 
@@ -74,4 +76,3 @@ class World:
         with open("./levels/level"+levelid+".txt") as f:
             world = [line.split() for line in f]
         return world
-
