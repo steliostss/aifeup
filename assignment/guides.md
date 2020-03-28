@@ -54,22 +54,20 @@ Example of an implementation (pseudocode):
 
 while ( not finish_condition ):
 
+    x , y = world.userposition # find 
+    world.check_neibours(x,y) # check neighbours again
+
     direction = random(world.available_movements) # choose a random direction from available movements
     world.available_movements.remove(direction) # remove that direction from available movements
+    new_world = world.deepcopy() # CAREFUL ON DEEPCOPY, it should be done this way
     myqueue.add(world) # add the world to the queue
 
-    result = move(world, direction) # and try to move
+    result = move(new_world, direction) # and try to move
 
-    if result:
-        new_world = world.deepcopy() # CAREFUL ON DEEPCOPY, it should be done this way
-    else:
+    if !result:
         # if result == False then we backtrack
-        new_world = myqueue.pop()
+        world = myqueue.pop()
     
-    temp = world
-    world = new_world
-    new_world = world
-
     # this way, everytime a new instance of the class is added to the queue.
     # and use the previous if we made a mistake
 ```
