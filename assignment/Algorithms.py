@@ -5,12 +5,9 @@ import sys
 
 
 def printMap(map, moves): #Prints the final map with the path
-    for x, pos in enumerate(map[0]):
-        if pos == "U":
-            start = x
-
-    i = start
-    j = 0
+    
+    (i,j) = my_world.userposition
+    
     pos = set()
     for move in moves:
         if move == "L":
@@ -37,12 +34,9 @@ def printMap(map, moves): #Prints the final map with the path
 
 
 def validate(map, moves):  #Checks if it is possible to make to given move
-    for x, pos in enumerate(map[0]):
-        if pos == "U":
-            start = x
 
-    i = start
-    j = 0
+    (i,j) = my_world.userposition
+
     for move in moves:
         if move == "L":
             i -= 1
@@ -65,12 +59,9 @@ def validate(map, moves):  #Checks if it is possible to make to given move
 
 
 def findEnd(map, moves):   #Finds where the end is located
-    for x, pos in enumerate(map[0]):
-        if pos == "U":
-            start = x
+    
+    (i,j) = my_world.userposition
 
-    i = start
-    j = 0
     for move in moves:
         if move == "L":
             i -= 1
