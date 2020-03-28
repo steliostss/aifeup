@@ -1,12 +1,17 @@
+import World as wd
+import operator
+
 class World:
 
-    def __init__(self, _level, _lives):
+    def __init__(self, _level, _lives=4):
         # initialize class instance and attributes
         self.map = self.read_world(_level)
         self.X = len(self.map)
         self.Y = len(self.map[0])
         self.userposition = self.find_user_position()
         self.lives = _lives
+        self.path = []
+        self.path.append(self.userposition)
 
     def move(self, direction, steps=1):
         X, Y = self.userposition
@@ -49,8 +54,7 @@ class World:
             j = 0
             while j < sizeY:
                 if self.map[i][j] == 'U':
-                    self.userposition = (i, j)
-                    return
+                    return (i, j)
                 j+=1
             i+=1
 
@@ -67,5 +71,4 @@ class World:
         with open("./levels/level"+levelid+".txt") as f:
             world = [line.split() for line in f]
         return world
-
 
