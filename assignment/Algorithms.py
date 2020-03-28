@@ -3,6 +3,7 @@ import User as usr
 import World as wd
 import sys
 
+##Perna stis synartiseis to world anti gia to map
 
 def printMap(map, moves): #Prints the final map with the path
     
@@ -52,7 +53,7 @@ def validate(map, moves):  #Checks if it is possible to make to given move
 
         if not(0 <= i < len(map[0]) and 0 <= j < len(map)):
             return False
-        elif (map[j][i] == "W" or map[j][i] == "H"):
+        elif (map[j][i] == "W" or map[j][i] == "H"): ##allagh metajy toy i,j
             return False
 
     return True
@@ -63,7 +64,7 @@ def findEnd(map, moves):   #Finds where the end is located
     (i,j) = my_world.userposition
 
     for move in moves:
-        if move == "L":
+        if move == "L": ##To left 8elei j-1 opws kai ta alla 8eloun allages pio katw
             i -= 1
 
         elif move == "R":
