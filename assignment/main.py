@@ -24,10 +24,13 @@ def main ():
     i = 1
     lives = 4
     restart = False
-    while i <= levels: 
+    while i <= levels:
+        if restart == True:
+            lives = 4
         world = wd.World(i, lives)
         backup_world = copy.deepcopy(world)
         world.print_world()
+        print ("\n*** LIVES : ", world.lives, " ***\n")
         restart = False
 
         while res != 2:
@@ -41,6 +44,8 @@ def main ():
                     world = copy.deepcopy(backup_world)
                     world.lives = lives
                     world.print_world()
+                    print ("\n*** LIVES : ", world.lives, " ***\n")
+                    restart = False
                     continue
                 else:
                     i = 1
@@ -49,8 +54,10 @@ def main ():
                     print("You have to start again from level 1. Sorry")
                     restart = True
                     break
+
             res = fun.move(world, movement)
             world.print_world()
+            print ("\n*** LIVES : ", world.lives, " ***\n")
         
         if res == 2 and not restart:
             print("\n!!!!!!!!!!!!!!!!!")
