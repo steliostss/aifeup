@@ -22,7 +22,11 @@ def DFS(World):
         result = fun.move(new_world, direction)
 
         if result == 0 or result == -1 :
-            my_world = my_queue.pop()
+            if  my_world.available_movements[x][y].empty:
+               my_world = my_queue.pop()
+            else:
+                direction = sys.random(my_world.available_movements[x][y])
+                my_world.available_movements.remove(direction)
         elif result == 2:
             if len(new_world.path) < best_path:
                 best_world = new_world
