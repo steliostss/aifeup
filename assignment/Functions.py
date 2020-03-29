@@ -2,14 +2,19 @@ import World as wd
 import operator
 
 def move(world, direction, steps=1):
-    X, Y = world.userposition
-    targetX = X
-    targetY = Y
-    movement = world.decide_move(direction)
+    direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
+    x , y = tuple(map(sum, zip(world.userposition, direction_tuple))) # x,y represent the object that the user interacts with
+    interaction_object = world.map[x][y]
     
-    # TODO: 
-    # return movement(steps)
-    # movement function will return True on success of False on Failure
+    movement_function = object_interaction_function('U', interaction_object)
+    result = movement_function(world, direction_tuple)
+
+    return result
+
+    # movement_function will return:
+    # 0 on failure
+    # 1 on success
+    # 2 on finish
 
 def object_interaction_function(_first, _second):
     switcher = {
@@ -50,55 +55,73 @@ def update_positions(myP, myT,
     # 3. change nextNextPosition to nextType
     world.map[nextNextP[0], nextNextP[1]] = nextT
 
-def update_user_position (world, direction):
-    world.userposition = tuple(map(sum, zip(world.userposition, direction)))
-    return
-
-def user_and_space (world, _direction):
+def user_and_space (world, _direction): # done
     ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+    ( i , j ) = tuple(map(sum, zip( world.userposition, _direction)))
+    world.map[i][j] = 'U' # fill next position
     world.map[x][y] = '-' # empty previous position
-    update_user_position(world, direction_tuple) # update position
-    ( x , y ) = world.userposition
-    world.map[x][y] = 'U' # fill next
-    return True
+    world.userposition = tuple(map(sum, zip(world.userposition, _direction))) # update position
+    return 1 # = success
 
-def user_and_box (world, _direction):
+def user_and_finish (world, _direction): # done
     ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+    world.map[x][y] = '-' # empty previous position
+    world.userposition = tuple(map(sum, zip(world.userposition, _direction))) # update position
+    ( x , y ) = world.userposition
+    world.map[x][y] = 'U' # reach end
+    return 2 # = finish
+
+def user_and_box (world, _direction): # done
+    ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
+    ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction)))
+    type1 = world.map[i1][j1]
+    type2 = world.map[i2][j2]
+
+    interaction_function = object_interaction_function(type1, type2)
+    result = interaction_function(world, _direction)
+    if result == 0:
+        return result
+    else: # here: most probably if not sure result = 1 and not 2
+        result = user_and_space(world, _direction) # so call this function to fill the gap
+    return result
+
+def user_and_wall (world, _direction): # done
+    return 0
     
-def user_and_finish (world, _direction):
-    ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+def user_and_hole (world, _direction): # done
+    return 0
 
-def user_and_ice (world, _direction):
-    ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+def user_and_ice (world, _direction): # 
+    ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
 
-def user_and_wall (world, _direction):
-    return False
-    
-def user_and_hole (world, _direction):
-    ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+def box_and_wall (world, _direction): # done
+    return 0
 
-def box_and_wall (world, _direction):
-    return False
+def box_and_hole (world, _direction): # done
+    ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
+    ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction)))
+    world.map[i1][j1] = '-'
+    world.map[i2][j2] = '-'
+    return 1
 
-def box_and_hole (world, _direction):
-    ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+def box_and_finish (world, _direction): # done
+    return 1
+
+def ice_and_finish (world, _direction): # done
+    return 0
+
+def ice_and_wall (world, _direction): # done
+    return 0
+
+def ice_and_space (world, _direction): #
     pass
 
-def ice_and_wall (world, _direction):
-    return False
-
-def ice_and_space (world, _direction):
-    pass
-
-def ice_and_hole (world, _direction):
-    ( x , y ) = world.userposition
-    direction_tuple = create_direction_tuple(_direction)
+def ice_and_hole (world, _direction): # done
+    ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
+    ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction)))
+    world.map[i1][j1] = '-'
+    world.map[i2][j2] = '-'
+    return 1
 
 def initialize2DList(X, Y):
     mylist = []

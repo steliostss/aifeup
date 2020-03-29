@@ -1,9 +1,6 @@
 '''
     Before editing file, read notes.md
 
-    # TODO 
-    # track moves & pushes
-
 '''
 
 import sys
@@ -23,8 +20,11 @@ def main ():
     world = wd.World(level,1)
     world.print_world()
     print("position is: ", world.userposition)
-
+    counter = 0
     for i in world.available_movements:
+        print()
+        print (counter, ": ", end='')
+        counter += 1
         print("------------------------")
         for j in i:
             print(j)
