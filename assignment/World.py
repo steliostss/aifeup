@@ -9,8 +9,8 @@ class World:
         self.map = self.read_world(_level)
         self.X = len(self.map)
         self.Y = len(self.map[0])
-        self.userposition = self.find_user_position()
         self.finish = None
+        self.userposition = self.find_user_position()
         self.lives = _lives
         self.path = []
         self.path.append(self.userposition)
