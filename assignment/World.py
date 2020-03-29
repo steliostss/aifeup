@@ -67,7 +67,7 @@ class World:
             if condition:
                 if self.map[x][y] != 'W':
                     self.available_movements[i][j].append(directions.get(dir_tuple))
-                    print(self.available_movements[i][j])
+                    # print(self.available_movements[i][j])
 
     def check_finish_condition(self, obstacle):
         (o1,o2) = obstacle

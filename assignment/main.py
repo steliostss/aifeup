@@ -20,42 +20,64 @@ def main ():
     level = sys.argv[1]
     world = wd.World(level,1)
     world.print_world()
+    print("--------------------------------")
+
     (x,y) = world.userposition
     counter = 0
 
+
+    level = sys.argv[1]
+    world = wd.World(level,1)
+    world.print_world()
+    (x,y) = world.userposition
+    counter = 0
+    print("--------------------------------")
     res = fun.move(world, 'w')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'd')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'w')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'w')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'd')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'd')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 's')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 's')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 'a')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 's')
     print(res)
     world.print_world()
+    print("--------------------------------")
     res = fun.move(world, 's')
     print(res)
     world.print_world()
+    print("--------------------------------")
+
+
 
 
 if __name__ == "__main__":

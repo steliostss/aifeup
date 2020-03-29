@@ -5,8 +5,10 @@ def move(world, direction):
     direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
     x , y = tuple(map(sum, zip(world.userposition, direction_tuple))) # x,y represent the object that the user interacts with
     interaction_object = world.map[x][y]
-    
+    print("interaction_object: ", interaction_object)
     movement_function = object_interaction_function('U', interaction_object)
+    print("movement_function: ", movement_function)
+    
     result = choose_interaction(world, movement_function, direction_tuple)
 
     return result
@@ -75,8 +77,8 @@ def create_direction_tuple(_direction):
     direction = {
         's' : ( 1 , 0 ) ,
         'w' : (-1 , 0 ) ,
-        'a' : ( 0 , 1 ) ,
-        'd' : ( 0 ,-1 )
+        'a' : ( 0 ,-1 ) ,
+        'd' : ( 0 ,1 )
     }
     return direction.get(_direction)
 
@@ -105,7 +107,7 @@ def user_and_box (world, _direction): # done
     type1 = world.map[i1][j1]
     type2 = world.map[i2][j2]
     interaction_function = object_interaction_function(type1, type2)
-    result = interaction_function(world, _direction)
+    result = choose_interaction(world, interaction_function, _direction)
     if result == 0:
         return result
     else: # here: most probably if not sure result = 1 and not 2
@@ -126,7 +128,7 @@ def user_and_ice (world, _direction): # done
     type1 = world.map[i1][j1]
     type2 = world.map[i2][j2]
     interaction_function = object_interaction_function(type1, type2)
-    result = interaction_function(world, _direction)
+    result = choose_interaction(world, interaction_function, _direction)
     if result == 0:
         return result
     else: # here: most probably if not sure result = 1 and not 2
