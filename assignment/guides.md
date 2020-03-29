@@ -25,10 +25,11 @@ This function has 3 arguments:
 
 #### Return Value
 
-| Return Value  | When                    | Example                  |
-|---------------|-------------------------|--------------------------|
-| True          | On succesful movement   | user + space interaction |
-| False         | On failed movement      | user + wall interaction  |
+| Return Value  | When                    | Example                   |
+|---------------|-------------------------|---------------------------|
+| 0             | On failed movement      | user + wall interaction   |
+| 1             | On succesful movement   | user + space interaction  |
+| 2             | On finish condition     | user + finish interaction |
 
 ##### Note:
 
