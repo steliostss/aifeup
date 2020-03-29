@@ -10,6 +10,7 @@ class World:
         self.X = len(self.map)
         self.Y = len(self.map[0])
         self.userposition = self.find_user_position()
+        self.finish = None
         self.lives = _lives
         self.path = []
         self.path.append(self.userposition)
@@ -27,9 +28,12 @@ class World:
             j = 0
             while j < sizeY:
                 if self.map[i][j] == 'U':
-                    return (i, j)
+                    result = (i, j)
+                elif self.map[i][j] == 'F':
+                    self.finish = (i,j)
                 j+=1
             i+=1
+        return result
 
     def update_available_movements(self):
         sizeX = self.X
@@ -38,21 +42,22 @@ class World:
         while (i < sizeX):
             j = 0
             while (j < sizeY):
-                self.check_neighbours(i,j)
+                self.check_neighbours((i,j))
                 j+=1
             i+=1
 
-    def check_neighbours(self, i, j):
+    def check_neighbours(self, coordinates = self.userposition):
         # this functions checks all neighbours and IF they ARE NOT 'W'
         # aka Wall, then it adds the "movement" to the available_movements
         # class attribute
+        i , j  = coordinates
         directions = {
             (-1,0)  : 'w', # up
             (1,0)   : 's', # down
             (0,-1)  : 'a', # left
             (0,1)   : 'd'  # right
         }
-        if self.map[i][j] == 'W' or self.map[i][j] == 'F' or self.map[i][j] == 'H':
+        if (self.map[i][j] == 'W' or self.map[i][j] == 'F' or self.map[i][j] == 'H'):
             return
         self.available_movements[i][j] = []
         for dir_tuple in directions:
@@ -63,9 +68,29 @@ class World:
                     self.available_movements[i][j].append(directions.get(dir_tuple))
                     print(self.available_movements[i][j])
 
+    def check_finish_condition(self, obstacle):
+        (o1,o2) = obstacle
+        (o1_inv,o2_inv) = tuple([-1*x for x in obstacle]) # to subtract tuples
+        (f1,f2) = self.finish
+        (i,j)   = tuple(map(sum, zip((f1,f2), (o1_inv,o2_inv)))) # tuple to check direction
+
+        checklist = ['-', 'H']
+        if i != 0 and j == 0:
+            res1 = self.map[o1][o2-1] in checklist
+            res2 = self.map[o1][o2+1] in checklist
+       
+        elif j != 0 and i == 0:
+            res1 = self.map[o1-1][o2] in checklist
+            res2 = self.map[o1+1][o2] in checklist
+
+        if (res1 or res2):
+            return -1
+        else:
+            return 1
+
     def print_world (self):
-        for i in self.map: 
-            for item in i: 
+        for i in self.map:
+            for item in i:
                 print(item, end=' ')
             print()
 
