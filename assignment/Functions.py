@@ -5,9 +5,9 @@ def move(world, direction):
     direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
     x , y = tuple(map(sum, zip(world.userposition, direction_tuple))) # x,y represent the object that the user interacts with
     interaction_object = world.map[x][y]
-    print("interaction_object: ", interaction_object)
+    # print("interaction_object: ", interaction_object)
     movement_function = object_interaction_function('U', interaction_object)
-    print("movement_function: ", movement_function)
+    # print("movement_function: ", movement_function)
     
     result = choose_interaction(world, movement_function, direction_tuple)
 
@@ -38,6 +38,10 @@ def choose_interaction(world, function, direction):
         result = box_and_space(world, direction)
     elif function == "box_and_hole":
         result = box_and_hole(world, direction)
+    elif function == "box_and_box":
+        result = box_and_box(world, direction)
+    elif function == "ice_and_ice":
+        result = ice_and_ice(world, direction)
     elif function == "box_and_finish":
         result = box_and_finish(world, direction)
     elif function == "box_and_ice":
@@ -156,7 +160,7 @@ def box_and_hole (world, _direction): # done
 
 def box_and_finish (world, _direction): # done
     (i,j) = tuple(map(sum, zip(world.userposition, _direction))) # ice
-    result = world.check_finish_condition((i,j), _direction)
+    result = world.check_finish_condition((i,j))
     if result: # we are able to finish
         return 0 # no movement performed
     else:
@@ -214,6 +218,12 @@ def ice_and_hole (world, _direction): # done
     world.map[i1][j1] = '-'
     world.map[i2][j2] = '-'
     return 1
+
+def box_and_box(world, direction): # done
+    return 0
+
+def ice_and_ice(world, direction): # done
+    return 0
 
 def initialize2DList(X, Y):
     mylist = []

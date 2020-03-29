@@ -9,6 +9,7 @@ import User as usr
 import World as wd
 import Functions as fun
 import queue
+import copy
 
 def main ():
 
@@ -17,18 +18,21 @@ def main ():
         print('Usage: main.py <level>')
         exit(1)
 
+    movement = ''
+    res = 1
     level = sys.argv[1]
     world = wd.World(level,1)
+    backup_world = copy.deepcopy(world)
     world.print_world()
-    print("--------------------------------")
-    res = fun.move(world, 'w')
-    print(res)
-    world.print_world()
-
     while res != 2:
-        movement = input("where do you move?\n")
+        movement = input("-------------- movement? >> ")
+        while len(movement) != 1:
+            movement = input("-------------- movement? >> ")
+        if movement == 'r':
+            world = copy.deepcopy(backup_world)
+            world.print_world()
+            continue
         res = fun.move(world, movement)
-        print(res)
         world.print_world()
     print("\n\nsuccess!!!!")
 
