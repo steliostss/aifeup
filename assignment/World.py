@@ -46,10 +46,11 @@ class World:
                 j+=1
             i+=1
 
-    def check_neighbours(self, coordinates = self.userposition):
+    def check_neighbours(self, coordinates = None):
         # this functions checks all neighbours and IF they ARE NOT 'W'
         # aka Wall, then it adds the "movement" to the available_movements
         # class attribute
+        coordinates = self.userposition
         i , j  = coordinates
         directions = {
             (-1,0)  : 'w', # up

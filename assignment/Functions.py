@@ -7,7 +7,7 @@ def move(world, direction):
     interaction_object = world.map[x][y]
     
     movement_function = object_interaction_function('U', interaction_object)
-    result = movement_function(world, direction_tuple)
+    result = choose_interaction(world, movement_function, direction_tuple)
 
     return result
 
@@ -16,6 +16,42 @@ def move(world, direction):
     #  0 on failure
     #  1 on success
     #  2 on finish
+
+def choose_interaction(world, function, direction):
+    if function == "user_and_space":
+        result = user_and_space(world, direction)
+    elif function == "user_and_finish":
+        result = user_and_finish(world, direction)
+    elif function == "user_and_box":
+        result = user_and_box(world, direction)
+    elif function == "user_and_wall":
+        result = user_and_wall(world, direction)
+    elif function == "user_and_hole":
+        result = user_and_hole(world, direction)
+    elif function == "user_and_ice":
+        result = user_and_ice(world, direction)
+    elif function == "box_and_wall":
+        result = box_and_wall(world, direction)
+    elif function == "box_and_space":
+        result = box_and_space(world, direction)
+    elif function == "box_and_hole":
+        result = box_and_hole(world, direction)
+    elif function == "box_and_finish":
+        result = box_and_finish(world, direction)
+    elif function == "box_and_ice":
+        result = box_and_ice(world, direction)
+    elif function == "ice_and_wall":
+        result = ice_and_wall(world, direction)
+    elif function == "ice_and_box":
+        result = ice_and_box(world, direction)
+    elif function == "ice_and_box":
+        result = ice_and_box(world, direction)
+    elif function == "ice_and_space":
+        result = ice_and_space(world, direction)
+    elif function == "ice_and_hole":
+        result = ice_and_hole(world, direction)
+
+    return result
 
 def object_interaction_function(_first, _second):
     switcher = {

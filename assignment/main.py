@@ -8,7 +8,6 @@ import sys
 import User as usr
 import World as wd
 import Functions as fun
-
 import queue
 
 def main ():
@@ -21,12 +20,42 @@ def main ():
     level = sys.argv[1]
     world = wd.World(level,1)
     world.print_world()
+    (x,y) = world.userposition
     counter = 0
 
-    myq = queue.Queue(maxsize=1000)
-    while counter <= 10:
-        (x,y) = world.userposition
-
+    res = fun.move(world, 'w')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'd')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'w')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'w')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'd')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'd')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 's')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 's')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 'a')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 's')
+    print(res)
+    world.print_world()
+    res = fun.move(world, 's')
+    print(res)
+    world.print_world()
 
 
 if __name__ == "__main__":
