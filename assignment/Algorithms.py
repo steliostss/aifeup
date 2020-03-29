@@ -5,7 +5,7 @@ import sys
 import Functions as fun
 
 
-def BFS(World):
+def DFS(World):
 
     my_world = wd.World(0,6)
     my_queue = queue.Queue() 
@@ -14,19 +14,19 @@ def BFS(World):
 
         x,y = my_world.userposition
         my_world.check_neighbours(x,y)
-        direction = random(my_world.available_movements)
+        direction = random(my_world.available_movements[x][y])
         my_world.available_movements.remove(direction)
         new_world = my_world.deepcopy()
         my_queue.add(my_world)
 
         result = fun.move(new_world, direction)
 
-        if != result:
+        if not result :
             my_world = my_queue.pop()
 
     new_world.printWorld()
 
-def DFS(World):
+def BFS(World):
     
     my_world = wd.World(0,6)
 
