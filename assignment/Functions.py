@@ -129,8 +129,8 @@ def user_and_hole (world, _direction): # done
 def user_and_ice (world, _direction): # done
     ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
     ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction)))
-    type1 = world.map[i1][j1]
-    type2 = world.map[i2][j2]
+    type1 = world.map[i1][j1] # ice
+    type2 = world.map[i2][j2] # next position
     interaction_function = object_interaction_function(type1, type2)
     result = choose_interaction(world, interaction_function, _direction)
     if result == 0:
@@ -186,25 +186,25 @@ def ice_and_box (world, _direction): # done
 def ice_and_space (world, _direction): # done
     ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction))) # ice
     ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction))) # space
-    ( i3 , j3 ) = tuple(map(sum, zip( ( i2 , j2 )       , _direction))) # space
+    ( i3 , j3 ) = tuple(map(sum, zip( ( i2 , j2 )       , _direction))) # next position
 
     world.map[i1][j1] = '-' # empty previous position
     
     condition = (0 <= i3 < world.X and 0 <= j3 < world.Y)
     while (condition and world.map[i3][j3] != '-'):
-        
+
         if world.map[i3][j3] in ['W','B']:
             world.map[i2][j2] = 'I' # fill next position
-            result = 1
+            return 1
 
         elif world.map[i3][j3] == 'H':
             world.map[i2][j2] = '-' # fill next position
             world.map[i3][j3] = '-'
-            result = 1
+            return 1
 
         elif world.map[i3][j3] == 'F':
             world.map[i2][j2] = 'I' # fill next position
-            result = world.check_finish_condition((i2,j2))
+            return world.check_finish_condition((i2,j2))
 
         (i2,j2) = (i3,j3)
         (i3,j3) = tuple(map(sum, zip((i3,j3), _direction)))
