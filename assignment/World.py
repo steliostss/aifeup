@@ -83,7 +83,7 @@ class World:
             res1 = self.map[o1-1][o2] in checklist
             res2 = self.map[o1+1][o2] in checklist
 
-        if (res1 or res2):
+        if (res1 and res2):
             return -1
         else:
             return 1

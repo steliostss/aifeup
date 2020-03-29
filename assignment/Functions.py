@@ -1,7 +1,7 @@
 import World as wd
 import operator
 
-def move(world, direction, steps=1):
+def move(world, direction):
     direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
     x , y = tuple(map(sum, zip(world.userposition, direction_tuple))) # x,y represent the object that the user interacts with
     interaction_object = world.map[x][y]
