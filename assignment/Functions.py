@@ -210,8 +210,6 @@ def ice_and_space (world, _direction): # done
         (i3,j3) = tuple(map(sum, zip((i3,j3), _direction)))
         condition = (0 <= i3 < world.X) and (0 <= j3 < world.Y)
 
-    return result # = success
-
 def ice_and_hole (world, _direction): # done
     ( i1 , j1 ) = tuple(map(sum, zip( world.userposition, _direction)))
     ( i2 , j2 ) = tuple(map(sum, zip( ( i1 , j1 )       , _direction)))
