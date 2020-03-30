@@ -230,3 +230,14 @@ def initialize2DList(X, Y):
         for j in range(Y):
             mylist[i].append([])
     return mylist
+
+def compare_maps(map1, map2):
+    for i in range(0,len(map1)):
+        for j in range(0, len(map1[0])):
+            if map1[i][j] != map2[i][j]:
+                return False
+    return True
+
+def compare_worlds(position1, position2, map1, map2):
+    return (position1 == position2) and (compare_maps(map1, map2))
+
