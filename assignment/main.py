@@ -14,31 +14,57 @@ import copy
 def main ():
 
     # check if program is called with the correct arguments
-    if len(sys.argv) != 2:
-        print('Usage: main.py <level>')
+    if len(sys.argv) != 1:
+        print('Usage: python3 main.py')
         exit(1)
-
+    checklist = ['a', 's', 'w', 'd', 'r']
     movement = ''
+    levels = 6
     res = 1
-    level = sys.argv[1]
-    world = wd.World(level,1)
-    backup_world = copy.deepcopy(world)
-    world.print_world()
-    while res != 2:
-        movement = input("-------------- movement? >> ")
-        while len(movement) != 1:
-            movement = input("-------------- movement? >> ")
-        if movement == 'r':
-            world = copy.deepcopy(backup_world)
-            world.print_world()
-            continue
-        res = fun.move(world, movement)
+    i = 1
+    lives = 4
+    restart = False
+    while i <= levels:
+        if restart == True:
+            lives = 4
+        world = wd.World(i, lives)
+        backup_world = copy.deepcopy(world)
         world.print_world()
-    print("\n\nsuccess!!!!")
+        print ("\n*** LIVES : ", world.lives, " ***\n")
+        restart = False
 
+        while res != 2:
+            movement = input("-------------- movement? >> ")
+            while (len(movement) != 1 or movement not in checklist) and not restart:
+                movement = input("-------------- movement? >> ")
+            if movement == 'r' or res == -1 :
+                world.lives -= 1
+                if world.lives > 0:
+                    lives = world.lives
+                    world = copy.deepcopy(backup_world)
+                    world.lives = lives
+                    world.print_world()
+                    print ("\n*** LIVES : ", world.lives, " ***\n")
+                    restart = False
+                    continue
+                else:
+                    i = 1
+                    print("---------DEAD---------")
+                    print()
+                    print("You have to start again from level 1. Sorry")
+                    restart = True
+                    break
 
-
-
+            res = fun.move(world, movement)
+            world.print_world()
+            print ("\n*** LIVES : ", world.lives, " ***\n")
+        
+        if res == 2 and not restart:
+            print("\n!!!!!!!!!!!!!!!!!")
+            print("!!!! success !!!!")
+            print("!!!!!!!!!!!!!!!!!\n")
+            i += 1
+        res = 1
 
 if __name__ == "__main__":
     main()

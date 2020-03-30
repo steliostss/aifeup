@@ -4,7 +4,7 @@ import Functions as fun
 
 class World:
 
-    def __init__(self, _level, _lives=4):
+    def __init__(self, _level=1, _lives=4):
         # initialize class instance and attributes
         self.map = self.read_world(_level)
         self.X = len(self.map)
