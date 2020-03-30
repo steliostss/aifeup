@@ -69,9 +69,7 @@ def BFS(world):
                                                                         #to try the rest of the available movements
         index +=1                                                       
             
-        
+def Greedy_Searc(world):
+    pass
 
 
-
-            
-                 
