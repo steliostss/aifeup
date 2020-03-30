@@ -38,7 +38,7 @@ def DFS(world):
             new_world = copy.deepcopy(world)                             #create copy of the world to the execute the movement
             my_stack.append(new_world)                                      #add this new istance to the stack
 
-
+    # test
     best_world.printWorld()
 
 def BFS(world):
@@ -69,9 +69,7 @@ def BFS(world):
                                                                         #to try the rest of the available movements
         index +=1                                                       
             
-        
+def Greedy_Searc(world):
+    pass
 
 
-
-            
-                 
