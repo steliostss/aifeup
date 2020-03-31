@@ -43,8 +43,8 @@ def main ():
                 # print(i)
                 print(i[0].path)
 
-                    for i in best_solutions:
-                        i.print_world()
+            for i in best_solutions:
+                i.print_world()
         elif choice1=='2':
             best_solutions = [ None for line in range(0,7) ]
             for i in range(1,7):
