@@ -10,7 +10,7 @@ def move(world, direction):
     # print("movement_function: ", movement_function)
     
     result = choose_interaction(world, movement_function, direction_tuple)
-
+    world.check_neighbours()
     return result
 
     # movement_function will return:
