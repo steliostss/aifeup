@@ -111,6 +111,45 @@ def check_and_add_node(temp, struct):
         struct.append(temp)
     return temp
 
+def IDDFS(world):  #In theory it should work
+
+    max_depth=0
+    find_end='false'
+
+    my_stack = [] 
+    best_path = sys.maxsize
+
+    while find_end=='false':
+        current_depth = 0                                   #The depth we are currently
+
+        x,y = world.userposition
+        direction = sys.random(world.available_movements[x][y]) #Chooses an direction from the available ones
+        world.available_movements.remove(direction)         #Removes this movement from the available ones because we are going to use it now
+        new_world = copy.deepcopy(world)                 #Create a copy of the our world in order to execute the movement at the new copy 
+        my_stack.append(world)
+
+        while current_depth != max_depth:           
+
+            current_depth += 1
+            result = fun.move(new_world, direction)     #Checks to see if we can make the movement we wanted at the selected direction
+
+            if result == 0 or result == -1 :                                    #If the movement is failed 
+                if  world.available_movements[x][y].empty:                   #check if there aren't available movements left
+                    world = my_stack.pop()                                    #and remove the world instance from the stack
+                else:                                                           #else
+                    direction = sys.random(world.available_movements[x][y])  #try another available movement
+                    world.available_movements.remove(direction)              #and remove it from the available
+            elif result == 2:                                                   #if the result is 2 it means it has reached the end
+                find_end='true'
+            elif result == 1:                                                   #if the movement was successfull, it means the user has been moved
+                x,y = world.userposition                                     #so we get the new position of the user
+                direction = sys.random(world.available_movements[x][y])      #choose an available movement for the new user position
+                world.available_movements.remove(direction)                  #remove that movement for the available ones 
+                new_world = copy.deepcopy(world)                             #create copy of the world to the execute the movement
+                my_stack.append(new_world)
+
+        max_depth += 1
+
 def work_with_input():
     checklist = ['a', 's', 'w', 'd', 'r']
     movement = ''
