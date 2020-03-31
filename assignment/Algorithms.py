@@ -56,9 +56,9 @@ def BFS(list_world):
     queue = []
     queue.append(list_world)                              # We add the first instance of the world in the queue as it is already visited
     best_path = sys.maxsize
-    index=0                              
+    index = 0
 
-    while index != (len(queue)-1):  
+    while index < len(queue):  
 
         new_world = copy.deepcopy(queue[index])        # We return to the "father node" which is the last element in the queue
         x,y = new_world[0].userposition

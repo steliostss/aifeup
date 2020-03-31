@@ -23,7 +23,7 @@ def main ():
     for i in range(1,6):
         world = wd.World(i)
         list_world = [ world ]
-        best_world = alg.DFS(list_world)
+        best_world = alg.BFS(list_world)
         best_solutions[i] = best_world
     
     for i in best_solutions:
