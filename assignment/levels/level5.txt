@@ -1,7 +1,7 @@
 W W W W W W W W W W
 F - B H - - - I H W
-W - - - - - - - W W
-W W W B B B B W W W
-W W - H B - B - W W
+W - - - - H - - W W
+W W W W - - B W W W
+W W - - H B B - W W
 W U - B - - - - - W
 W W W W W W W W W W

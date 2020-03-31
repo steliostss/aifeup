@@ -6,7 +6,7 @@ import Functions as fun
 import copy
 import random
 
-def DFS(list_world, level__):
+def DFS(list_world):
     backup_world = copy.deepcopy(list_world)
     
     my_stack = [] 
@@ -74,7 +74,7 @@ def DFS(list_world, level__):
             new_world = copy.deepcopy(list_world)                                # create copy of the world to the execute the movement
             new_world = check_and_add_node(new_world, my_stack)         # add this new istance to the stack
 
-    return best_world
+    return best_world[0]
 
 def BFS(list_world):
     queue = []

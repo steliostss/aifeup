@@ -27,13 +27,13 @@ def main ():
         if choice == '1':
             print("Wait...")
             print("If waiting period exceed 1 minute, press CTRL+C and restart.")
-            result_BFS = fun.prepare_and_call_BFS()
             result_DFS = fun.prepare_and_call_DFS()
+            result_BFS = fun.prepare_and_call_BFS()
             results = [result_BFS, result_DFS]
             # results = [result_BFS]
             fun.print_results(results)
         elif choice == '2':
-            fun.work_with_input()
+            alg.work_with_input()
         elif choice == 'e':
             print("Bye.")
             quit()

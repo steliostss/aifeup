@@ -1,6 +1,7 @@
 import World as wd
 import operator
 import Algorithms as alg
+import time
 
 def move(list_world, direction): # DONE
     direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
@@ -241,31 +242,66 @@ def compare_worlds(map1, map2):
     return (compare_maps(map1, map2))
 
 def print_results(results):
-    for i in results:
+    best_solutions, time = results
+    for i in best_solutions:
         for algorithm in i:
             # print(algorithm[0].path)
             algorithm[0].print_world()
             print(algorithm[0].path)
+            print(algorithm[0].time)
     print()   
     print()   
     print()   
 
 def prepare_and_call_BFS():
+
     best_solutions = [ None for line in range(0,7) ]
+    start_time = time.time()
     for i in range(0,7):
         world = wd.World(i)
         list_world = [ world ]
-        best_world = alg.DFS(list_world, i)
-        best_solutions[i-1] = best_world
+        print(i, "BFS")
+        
+        # COUNT TIME
+        algorithm_start_time = time.time()
+        
+        # CALL ALGORITHM
+        best_world = alg.BFS(list_world)
+        
+        # STOP COUNTING TIME
+        algorithm_stop_time = time.time()
+        alg_time = algorithm_stop_time - algorithm_start_time
 
-    return best_solutions
+        print("time: ", alg_time)
+        best_solutions[i-1] = best_world
+    stop_time = time.time()
+    total_time = start_time - stop_time
+    return (best_solutions, total_time)
 
 def prepare_and_call_DFS():
+
     best_solutions = [ None for line in range(0,7) ]
+    start_time = time.time()
     for i in range(0,7):
         world = wd.World(i)
+        print(i, "DFS")
+
         list_world = [ world ]
-        best_world = alg.DFS(list_world, i)
+        
+        # COUNT TIME
+        algorithm_start_time = time.time()
+        
+        # CALL ALGORITHM
+        best_world = alg.DFS(list_world)
+        
+        # STOP COUNTING TIME
+        algorithm_stop_time = time.time()
+        alg_time = algorithm_stop_time - algorithm_start_time
+
+        print("time: ", alg_time)
+
         best_solutions[i-1] = best_world
 
-    return best_solutions
+    stop_time = time.time()
+    total_time = start_time - stop_time
+    return (best_solutions, total_time)
