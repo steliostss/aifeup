@@ -94,9 +94,9 @@ if there is then it returns the existing
 '''
 def check_and_add_node(temp, struct):
     for i in range(0, len(struct)):
-        position1 = temp[0].struct[i].userposition
+        position1 = temp[0].userposition
         position2 = struct[i][0].userposition
-        map1 = temp[0].struct[i].map
+        map1 = temp[0].map
         map2 = struct[i][0].map
         result = fun.compare_worlds(position1, position2, map1, map2)
         if result:
@@ -119,6 +119,7 @@ def work_with_input():
         if restart == True:
             lives = 4
         world = wd.World(i, lives)
+        list_world = [ world ]
         backup_world = copy.deepcopy(list_world[0])
         list_world[0].print_world()
         print ("\n*** LIVES : ", list_world[0].lives, " MOVES: ", moves, "***\n")

@@ -22,7 +22,8 @@ def main ():
     best_solutions = [ None for line in range(1,6) ]
     for i in range(1,6):
         world = wd.World(i)
-        best_world = alg.DFS(world)
+        list_world = [ world ]
+        best_world = alg.DFS(list_world)
         best_solutions[i] = best_world
     
     for i in best_solutions:
