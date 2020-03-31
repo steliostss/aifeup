@@ -7,6 +7,8 @@ import copy
 import random
 
 def DFS(list_world):
+    backup_world = copy.deepcopy(list_world)
+    
     my_stack = [] 
     best_path = sys.maxsize                                     # biggest available integer
     x,y = list_world[0].userposition
@@ -18,8 +20,24 @@ def DFS(list_world):
     while (my_stack):                                           # If there are still instances of the world inside the stack continue trying to reach the end
 
         result = fun.move(new_world, direction)                 # Checks to see if we can make the movement we wanted at the selected direction
+        finish = new_world[0].check_finish_condition()
+        print("finish is :", finish)
+        if finish == -1:
+            print("result is :", result)
+            result = -1
 
-        if result == 0 or result == -1 :                                    # If the movement failed 
+        if result == -1 :                                       # RESTART EVERYTHING
+            list_world = copy.deepcopy(backup_world)
+            list_world[0].lives -= 1
+            list_world[0].print_world()
+            my_stack = []
+            x,y = list_world[0].userposition
+            direction = random.choice(list_world[0].available_movements[x][y])  # Chooses an direction from the available ones
+            list_world[0].available_movements[x][y].remove(direction)           # Removes this movement from the available ones because we are going to use it now
+            new_world = copy.deepcopy(list_world)                            # Create a copy of the our world in order to execute the movement at the new copy 
+            my_stack.append(list_world)                                      # Add the previous instance of the world in the stack in case we want to backtrack later
+            
+        if result == 0 :                                    # If the movement failed 
             if not list_world[0].available_movements[x][y]:                         # check if there aren't available movements left
                 try:
                     new_world = my_stack.pop()                              # and remove the world instance from the stack                    
@@ -74,7 +92,9 @@ def BFS(list_world):
             result = fun.move(temp_world, direction)                         # then we make the movement
             print("\n----------------------TEMP WORLD\n")
             temp_world[0].print_world()
-            if result == 0 or result == -1 :
+            if result == -1 :
+                pass
+            elif result == 0 :
                 if not new_world[0].available_movements[x][y]:
                     del queue[index]                        # delete the object to save "memory"
                     index -= 1                              # move index back to be incremented again out of the loop
@@ -103,7 +123,7 @@ def check_and_add_node(temp, struct):
         position2 = struct[i][0].userposition
         map1 = temp[0].map
         map2 = struct[i][0].map
-        result = fun.compare_worlds(position1, position2, map1, map2)
+        result = fun.compare_worlds(map1, map2)
         if result:
             temp[0] = struct[i][0]
             break
@@ -111,7 +131,7 @@ def check_and_add_node(temp, struct):
         struct.append(temp)
     return temp
 
-def IDDFS(world):  #In theory it should work
+def IDDFS(list_world):  #In theory it should work
 
     max_depth=0
     find_end='false'
@@ -122,11 +142,11 @@ def IDDFS(world):  #In theory it should work
     while find_end=='false':
         current_depth = 0                                   #The depth we are currently
 
-        x,y = world.userposition
-        direction = sys.random(world.available_movements[x][y]) #Chooses an direction from the available ones
-        world.available_movements.remove(direction)         #Removes this movement from the available ones because we are going to use it now
-        new_world = copy.deepcopy(world)                 #Create a copy of the our world in order to execute the movement at the new copy 
-        my_stack.append(world)
+        x,y = list_world[0].userposition
+        direction = sys.random(list_world[0].available_movements[x][y]) #Chooses an direction from the available ones
+        list_world[0].available_movements.remove(direction)         #Removes this movement from the available ones because we are going to use it now
+        new_world = copy.deepcopy(list_world)                 #Create a copy of the our world in order to execute the movement at the new copy 
+        my_stack.append(list_world)
 
         while current_depth != max_depth:           
 
@@ -134,18 +154,18 @@ def IDDFS(world):  #In theory it should work
             result = fun.move(new_world, direction)     #Checks to see if we can make the movement we wanted at the selected direction
 
             if result == 0 or result == -1 :                                    #If the movement is failed 
-                if  world.available_movements[x][y].empty:                   #check if there aren't available movements left
-                    world = my_stack.pop()                                    #and remove the world instance from the stack
+                if  list_world[0].available_movements[x][y].empty:                   #check if there aren't available movements left
+                    list_word = my_stack.pop()                                    #and remove the world instance from the stack
                 else:                                                           #else
-                    direction = sys.random(world.available_movements[x][y])  #try another available movement
-                    world.available_movements.remove(direction)              #and remove it from the available
+                    direction = sys.random(list_world[0].available_movements[x][y])  #try another available movement
+                    list_world[0].available_movements.remove(direction)              #and remove it from the available
             elif result == 2:                                                   #if the result is 2 it means it has reached the end
                 find_end='true'
             elif result == 1:                                                   #if the movement was successfull, it means the user has been moved
-                x,y = world.userposition                                     #so we get the new position of the user
-                direction = sys.random(world.available_movements[x][y])      #choose an available movement for the new user position
-                world.available_movements.remove(direction)                  #remove that movement for the available ones 
-                new_world = copy.deepcopy(world)                             #create copy of the world to the execute the movement
+                x,y = list_world[0].userposition                                     #so we get the new position of the user
+                direction = sys.random(list_world[0].available_movements[x][y])      #choose an available movement for the new user position
+                list_world[0].available_movements.remove(direction)                  #remove that movement for the available ones 
+                new_world = copy.deepcopy(list_world)                             #create copy of the world to the execute the movement
                 my_stack.append(new_world)
 
         max_depth += 1
