@@ -26,7 +26,29 @@ def main ():
     choice = input('--->>')
 
     if choice == '1':
-        pass
+        print('Press 1 to solve the game with BFS')
+        print('Press 2 to slove the game with DFS')
+        choice1 = input('--->>')
+
+        if choice1 == '1':
+            best_solutions = [ None for line in range(1,6) ]
+            for i in range(1,6):
+                world = wd.World(i)
+                list_world = [ world ]
+                best_world = alg.BFS(list_world)
+                best_solutions[i] = best_world
+            
+            for i in best_solutions:
+                i.print_world()
+        elif choice1=='2':
+            for i in range(1,6):
+                world = wd.World(i)
+                list_world = [ world ]
+                best_world = alg.DFS(list_world)
+                best_solutions[i] = best_world
+            
+            for i in best_solutions:
+                i.print_world()
     elif choice == '2':
         pass
     elif choice == '3':
@@ -39,6 +61,7 @@ def main ():
         restart = False
         while i <= levels: 
             world = wd.World(i, lives)
+            #list_world = [ world ]
             backup_world = copy.deepcopy(world)
             world.print_world()
             restart = False
@@ -77,15 +100,6 @@ def main ():
             print('Exiting..')
 
 
-        best_solutions = [ None for line in range(1,6) ]
-        for i in range(1,6):
-            world = wd.World(i)
-            list_world = [ world ]
-            best_world = alg.BFS(list_world)
-            best_solutions[i] = best_world
-        
-        for i in best_solutions:
-            i.print_world()
 
 if __name__ == "__main__":
     main()
