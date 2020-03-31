@@ -159,8 +159,7 @@ def box_and_hole (list_world, _direction):
     return 1
 
 def box_and_finish (list_world, _direction):
-    (i,j) = tuple(map(sum, zip(list_world[0].userposition, _direction))) # ice
-    result = list_world[0].check_finish_condition((i,j))
+    result = list_world[0].check_finish_condition()
     if result: # we are able to finish
         return 0 # no movement performed
     else:
@@ -170,8 +169,7 @@ def box_and_ice (list_world, _direction):
     return 0
 
 def ice_and_finish (list_world, _direction):
-    (i,j) = tuple(map(sum, zip(list_world[0].userposition, _direction))) # ice
-    result = list_world[0].check_finish_condition((i,j), _direction)
+    result = list_world[0].check_finish_condition()
     if result: # we are able to finish
         return 0 # no movement performed
     else:
@@ -204,7 +202,7 @@ def ice_and_space (list_world, _direction):
 
         elif list_world[0].map[i3][j3] == 'F':
             list_world[0].map[i2][j2] = 'I' # fill next position
-            return list_world[0].check_finish_condition((i2,j2))
+            return list_world[0].check_finish_condition()
 
         (i2,j2) = (i3,j3)
         (i3,j3) = tuple(map(sum, zip((i3,j3), _direction)))
@@ -238,6 +236,6 @@ def compare_maps(map1, map2):
                 return False
     return True
 
-def compare_worlds(position1, position2, map1, map2):
-    return (position1 == position2) and (compare_maps(map1, map2))
+def compare_worlds(map1, map2):
+    return (compare_maps(map1, map2))
 

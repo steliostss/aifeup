@@ -69,25 +69,46 @@ class World:
                     self.available_movements[i][j].append(directions.get(dir_tuple))
                     # print(self.available_movements[i][j])
 
-    def check_finish_condition(self, obstacle):
-        (o1,o2) = obstacle
-        (o1_inv,o2_inv) = tuple([-1*x for x in obstacle]) # to subtract tuples
-        (f1,f2) = self.finish
-        (i,j)   = tuple(map(sum, zip((f1,f2), (o1_inv,o2_inv)))) # tuple to check direction
+    def check_finish_condition(self):
+        (x,y) = self.finish
+        if self.map[x][y] == 'U':
+            return 1
 
+
+        if ( x == self.X-1 ) :
+            o1 = x-1
+            o2 = y
+        elif ( x == 0 ) :
+            o1 = 1
+            o2 = y
+        elif ( y == self.Y-1) :
+            o1 = x
+            o2 = y-1
+        elif ( y == 0 ) :
+            o1 = x
+            o2 = 1
+
+        if (self.map[o1][o2] == '-' or self.map[o1][o2] == 'H' or self.map[o1][o2] == 'U'):
+            return 1
+
+        (o1_inv,o2_inv) = tuple([-1*t for t in [o1,o2]]) # to subtract tuples
+        (i,j)   = tuple(map(sum, zip((x,y), (o1_inv,o2_inv)))) # tuple to check direction
+        # print(i,j)
         checklist = ['-', 'H']
         if i != 0 and j == 0:
             res1 = self.map[o1][o2-1] in checklist
             res2 = self.map[o1][o2+1] in checklist
-       
+
         elif j != 0 and i == 0:
             res1 = self.map[o1-1][o2] in checklist
             res2 = self.map[o1+1][o2] in checklist
-
+        
         if (res1 and res2):
-            return -1
-        else:
+            # print("hey1")
             return 1
+        else:
+            # print("hey2")
+            return -1
 
     def print_world (self):
         for i in self.map:
