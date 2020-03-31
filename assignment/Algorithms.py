@@ -6,7 +6,7 @@ import Functions as fun
 import copy
 import random
 
-def DFS(list_world):
+def DFS(list_world, level__):
     backup_world = copy.deepcopy(list_world)
     
     my_stack = [] 
@@ -18,13 +18,17 @@ def DFS(list_world):
     my_stack.append(list_world)                                      # Add the previous instance of the world in the stack in case we want to backtrack later
 
     while (my_stack):                                           # If there are still instances of the world inside the stack continue trying to reach the end
-
+        print("------- level: ", level__)
         result = fun.move(new_world, direction)                 # Checks to see if we can make the movement we wanted at the selected direction
         finish = new_world[0].check_finish_condition()
-        print("finish is :", finish)
+        
         if finish == -1:
+            print("finish is : not possible")
             print("result is :", result)
             result = -1
+        else:
+            print("finish is : possible")
+
 
         if result == -1 :                                       # RESTART EVERYTHING
             list_world = copy.deepcopy(backup_world)
