@@ -19,15 +19,17 @@ def main ():
         print('Usage: python3 main.py')
         exit(1)
     # work_with_input()
-    best_solutions = [ None for line in range(1,7) ]
+    best_solutions = [ None for line in range(0,7) ]
     for i in range(1,7):
         world = wd.World(i)
         list_world = [ world ]
         best_world = alg.DFS(list_world, i)
-        best_solutions[i] = best_world
+        best_solutions[i-1] = best_world
     
+    # for i in best_solutions:
+    #     i[0].print_world()
     for i in best_solutions:
-        i[0].print_world()
-
+        # print(i)
+        print(i[0].path)
 if __name__ == "__main__":
     main()

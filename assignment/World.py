@@ -93,7 +93,7 @@ class World:
 
         (o1_inv,o2_inv) = tuple([-1*t for t in [o1,o2]]) # to subtract tuples
         (i,j)   = tuple(map(sum, zip((x,y), (o1_inv,o2_inv)))) # tuple to check direction
-        print(i,j)
+        # print(i,j)
         checklist = ['-', 'H']
         if i != 0 and j == 0:
             res1 = self.map[o1][o2-1] in checklist
@@ -104,10 +104,10 @@ class World:
             res2 = self.map[o1+1][o2] in checklist
         
         if (res1 and res2):
-            print("hey1")
+            # print("hey1")
             return 1
         else:
-            print("hey2")
+            # print("hey2")
             return -1
 
     def print_world (self):

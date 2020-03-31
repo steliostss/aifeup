@@ -10,7 +10,7 @@ def DFS(list_world, level__):
     backup_world = copy.deepcopy(list_world)
     
     my_stack = [] 
-    best_path = sys.maxsize                                     # biggest available integer
+    best_path_len = sys.maxsize                                     # biggest available integer
     x,y = list_world[0].userposition
     direction = random.choice(list_world[0].available_movements[x][y])  # Chooses an direction from the available ones
     list_world[0].available_movements[x][y].remove(direction)           # Removes this movement from the available ones because we are going to use it now
@@ -54,9 +54,10 @@ def DFS(list_world, level__):
         elif result == 2:      
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             list_world[0].print_world()                                             # if the result is 2 it means it has reached the end
-            if len(new_world[0].path) < best_path:                             # then save this world as the best available path yet
+            if len(new_world[0].path) < best_path_len:                             # then save this world as the best available path yet
                 best_world = copy.copy(new_world)                           # if there is a smaller path discovered
-                best_path = len(new_world[0].path)                             # update the best world and path
+                best_path = new_world[0].path                             # update the best world and path
+                best_path_len = len(best_path)
             try:
                 new_world = my_stack.pop()                                  # and remove the world instance from the stack                    
             except IndexError as err :
