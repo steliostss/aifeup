@@ -93,7 +93,7 @@ def user_and_space (list_world, _direction): # DONE
     list_world[0].map[i][j] = 'U' # fill next position
     list_world[0].map[x][y] = '-' # empty previous position
     list_world[0].userposition = tuple(map(sum, zip(list_world[0].userposition, _direction))) # update position
-    list_world[0].path.append(list_world[0].userposition)
+    # list_world[0].path.append(list_world[0].userposition)
     list_world[0].check_neighbours()
     return 1 # = success
 
@@ -103,7 +103,7 @@ def user_and_finish (list_world, _direction):
     list_world[0].userposition = tuple(map(sum, zip(list_world[0].userposition, _direction))) # update position
     ( x , y ) = list_world[0].userposition
     list_world[0].map[x][y] = 'U' # reach end
-    list_world[0].path.append(list_world[0].userposition)
+    # list_world[0].path.append(list_world[0].userposition)
     return 2 # = finish
 
 def user_and_box (list_world, _direction):
@@ -117,7 +117,7 @@ def user_and_box (list_world, _direction):
         return result
     else: # here: most probably if not sure result = 1 and not 2
         result = user_and_space(list_world, _direction) # so call this function to fill the gap
-        list_world[0].path.append(list_world[0].userposition)
+        # list_world[0].path.append(list_world[0].userposition)
         list_world[0].check_neighbours()
     return result
 
@@ -138,7 +138,7 @@ def user_and_ice (list_world, _direction):
         return result
     else: # here: most probably if not sure result = 1 and not 2
         result = user_and_space(list_world, _direction) # so call this function to fill the gap
-        list_world[0].path.append(list_world[0].userposition)
+        # list_world[0].path.append(list_world[0].userposition)
         list_world[0].check_neighbours()
     return result
 
@@ -243,13 +243,16 @@ def compare_worlds(map1, map2):
 def print_results(results):
     for i in results:
         for algorithm in i:
-            print(algorithm[0].path)
+            # print(algorithm[0].path)
             algorithm[0].print_world()
-            print(algorithm[0].path)   
+            print(algorithm[0].path)
+    print()   
+    print()   
+    print()   
 
 def prepare_and_call_BFS():
     best_solutions = [ None for line in range(0,7) ]
-    for i in range(1,7):
+    for i in range(0,7):
         world = wd.World(i)
         list_world = [ world ]
         best_world = alg.DFS(list_world, i)
@@ -259,7 +262,7 @@ def prepare_and_call_BFS():
 
 def prepare_and_call_DFS():
     best_solutions = [ None for line in range(0,7) ]
-    for i in range(1,7):
+    for i in range(0,7):
         world = wd.World(i)
         list_world = [ world ]
         best_world = alg.DFS(list_world, i)

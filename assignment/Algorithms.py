@@ -18,22 +18,22 @@ def DFS(list_world, level__):
     my_stack.append(list_world)                                      # Add the previous instance of the world in the stack in case we want to backtrack later
 
     while (my_stack):                                           # If there are still instances of the world inside the stack continue trying to reach the end
-        print("------- level: ", level__)
+        # print("------- level: ", level__)
         result = fun.move(new_world, direction)                 # Checks to see if we can make the movement we wanted at the selected direction
         finish = new_world[0].check_finish_condition()
         
         if finish == -1:
-            print("finish is : not possible")
-            print("result is :", result)
+            # print("finish is : not possible")
+            # print("result is :", result)
             result = -1
-        else:
-            print("finish is : possible")
+        # else:
+        #     # print("finish is : possible")
 
 
         if result == -1 :                                       # RESTART EVERYTHING
             list_world = copy.deepcopy(backup_world)
             list_world[0].lives -= 1
-            list_world[0].print_world()
+            # list_world[0].print_world()
             my_stack = []
             x,y = list_world[0].userposition
             direction = random.choice(list_world[0].available_movements[x][y])  # Chooses an direction from the available ones
@@ -51,9 +51,10 @@ def DFS(list_world, level__):
             else:
                 direction = random.choice(list_world[0].available_movements[x][y])  # try another available movement
                 list_world[0].available_movements[x][y].remove(direction)           # and remove it from the available
-        elif result == 2:      
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            list_world[0].print_world()                                             # if the result is 2 it means it has reached the end
+        elif result == 2:
+            list_world[0].path.append(list_world[0].userposition)
+            # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            # list_world[0].print_world()                                            # if the result is 2 it means it has reached the end
             if len(new_world[0].path) < best_path_len:                             # then save this world as the best available path yet
                 best_world = copy.copy(new_world)                           # if there is a smaller path discovered
                 best_path = new_world[0].path                             # update the best world and path
@@ -64,12 +65,12 @@ def DFS(list_world, level__):
                 print(err, ": empty stack")
                 break
         elif result == 1:                                                   # if the movement was successfull, it means the user has been moved
-            # print(x,y)
+            list_world[0].path.append(list_world[0].userposition)
             x,y = list_world[0].userposition                                        # so we get the new position of the user
             list_world[0].check_neighbours()
             direction = random.choice(list_world[0].available_movements[x][y])      # choose an available movement for the new user position
             list_world[0].available_movements[x][y].remove(direction)               # remove that movement for the available ones 
-            list_world[0].print_world()
+            # list_world[0].print_world()
             new_world = copy.deepcopy(list_world)                                # create copy of the world to the execute the movement
             new_world = check_and_add_node(new_world, my_stack)         # add this new istance to the stack
 
@@ -102,8 +103,10 @@ def BFS(list_world):
                 # do not add to queue
                 continue
             elif result == 1 :
+                temp_world[0].path.append(temp_world[0].userposition)
                 temp_world = check_and_add_node(temp_world, queue)  # succesful movement, add to queue go on to next available
             elif result == 2 :
+                temp_world[0].path.append(temp_world[0].userposition)
                 if len(temp_world[0].path) < best_path:     # we compare the path if it is better than the previously found
                     best_world = copy.deepcopy(temp_world)                          # if there is a smaller path discovered
                     best_path = len(temp_world[0].path)                             # update the best world and path
@@ -185,7 +188,7 @@ def work_with_input():
         world = wd.World(i, lives)
         list_world = [ world ]
         backup_world = copy.deepcopy(list_world[0])
-        list_world[0].print_world()
+        # list_world[0].print_world()
         print ("\n*** LIVES : ", list_world[0].lives, " MOVES: ", moves, "***\n")
         restart = False
 
@@ -199,7 +202,7 @@ def work_with_input():
                     lives = list_world[0].lives
                     world = copy.deepcopy(backup_world)
                     list_world[0].lives = lives
-                    list_world[0].print_world()
+                    # list_world[0].print_world()
                     print ("\n*** LIVES : ", list_world[0].lives, " MOVES: ", moves, "***\n")
                     restart = False
                     continue
@@ -212,7 +215,7 @@ def work_with_input():
                     break
 
             res = fun.move(world, movement)
-            list_world[0].print_world()
+            # list_world[0].print_world()
             if res == 1:
                 moves += 1
             print ("\n*** LIVES : ", list_world[0].lives, " MOVES: ", moves, "***\n")

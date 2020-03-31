@@ -25,6 +25,8 @@ def main ():
         choice = input('--->> ')
 
         if choice == '1':
+            print("Wait...")
+            print("If waiting period exceed 1 minute, press CTRL+C and restart.")
             result_BFS = fun.prepare_and_call_BFS()
             result_DFS = fun.prepare_and_call_DFS()
             results = [result_BFS, result_DFS]
