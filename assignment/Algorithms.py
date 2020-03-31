@@ -61,6 +61,8 @@ def BFS(list_world):
     while index < len(queue):  
 
         new_world = copy.deepcopy(queue[index])        # We return to the "father node" which is the last element in the queue
+        print("new_world = ", type(new_world))
+        print("queue[index] = ", type(queue[index]))
         x,y = new_world[0].userposition
 
         while new_world[0].available_movements[x][y]:  # While there are available movements continue 
@@ -80,7 +82,7 @@ def BFS(list_world):
                 temp_world = check_and_add_node(temp_world, queue)  # succesful movement, add to queue go on to next available
             elif result == 2 :
                 if len(temp_world[0].path) < best_path:     # we compare the path if it is better than the previously found
-                    best_world = copy.copy(temp_world)                           # if there is a smaller path discovered
+                    best_world = copy.deecopy(temp_world)                           # if there is a smaller path discovered
                     best_path = len(temp_world[0].path)                             # update the best world and path
 
         index += 1
