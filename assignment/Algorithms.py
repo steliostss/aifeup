@@ -61,9 +61,10 @@ def BFS(list_world):
     while index < len(queue):  
 
         new_world = copy.deepcopy(queue[index])        # We return to the "father node" which is the last element in the queue
-        print("new_world = ", type(new_world))
-        print("queue[index] = ", type(queue[index]))
         x,y = new_world[0].userposition
+        print("\nLIST WORLD\n")
+        list_world[0].print_world()
+        print()
 
         while new_world[0].available_movements[x][y]:  # While there are available movements continue 
             x,y = new_world[0].userposition
@@ -71,18 +72,20 @@ def BFS(list_world):
             new_world[0].available_movements[x][y].remove(direction)           # and we remove it from the list and
             temp_world = copy.deepcopy(new_world)                           # make a backup of the world without any new movements
             result = fun.move(temp_world, direction)                         # then we make the movement
-
+            print("\n----------------------TEMP WORLD\n")
+            temp_world[0].print_world()
             if result == 0 or result == -1 :
                 if not new_world[0].available_movements[x][y]:
                     del queue[index]                        # delete the object to save "memory"
                     index -= 1                              # move index back to be incremented again out of the loop
+                    break
                 else:
                     pass                                    # you still have available moves but movement was not succesful
             elif result == 1 :
                 temp_world = check_and_add_node(temp_world, queue)  # succesful movement, add to queue go on to next available
             elif result == 2 :
                 if len(temp_world[0].path) < best_path:     # we compare the path if it is better than the previously found
-                    best_world = copy.deecopy(temp_world)                           # if there is a smaller path discovered
+                    best_world = copy.deepcopy(temp_world)                           # if there is a smaller path discovered
                     best_path = len(temp_world[0].path)                             # update the best world and path
 
         index += 1
@@ -105,7 +108,7 @@ def check_and_add_node(temp, struct):
             temp[0] = struct[i][0]
             break
     if not result:
-        struct.append(temp[0])
+        struct.append(temp)
     return temp
 
 def work_with_input():
