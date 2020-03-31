@@ -1,5 +1,6 @@
 import World as wd
 import operator
+import Algorithms as alg
 
 def move(list_world, direction): # DONE
     direction_tuple = create_direction_tuple(direction) # based on direction, create the dir_tuple (x,y)
@@ -239,3 +240,29 @@ def compare_maps(map1, map2):
 def compare_worlds(map1, map2):
     return (compare_maps(map1, map2))
 
+def print_results(results):
+    for i in results:
+        for algorithm in i:
+            print(algorithm[0].path)
+            algorithm[0].print_world()
+            print(algorithm[0].path)   
+
+def prepare_and_call_BFS():
+    best_solutions = [ None for line in range(0,7) ]
+    for i in range(1,7):
+        world = wd.World(i)
+        list_world = [ world ]
+        best_world = alg.DFS(list_world, i)
+        best_solutions[i-1] = best_world
+
+    return best_solutions
+
+def prepare_and_call_DFS():
+    best_solutions = [ None for line in range(0,7) ]
+    for i in range(1,7):
+        world = wd.World(i)
+        list_world = [ world ]
+        best_world = alg.DFS(list_world, i)
+        best_solutions[i-1] = best_world
+
+    return best_solutions

@@ -77,7 +77,7 @@ def DFS(list_world, level__):
 
 def BFS(list_world):
     queue = []
-    queue.append(list_world)                              # We add the first instance of the world in the queue as it is already visited
+    queue.append(list_world)                          # We add the first instance of the world in the queue as it is already visited
     best_path = sys.maxsize
     index = 0
 
@@ -85,32 +85,27 @@ def BFS(list_world):
 
         new_world = copy.deepcopy(queue[index])        # We return to the "father node" which is the last element in the queue
         x,y = new_world[0].userposition
-        print("\nLIST WORLD\n")
-        list_world[0].print_world()
-        print()
 
         while new_world[0].available_movements[x][y]:  # While there are available movements continue 
             x,y = new_world[0].userposition
-            direction = random.choice(new_world[0].available_movements[x][y])  # We choose on available movement 
-            new_world[0].available_movements[x][y].remove(direction)           # and we remove it from the list and
-            temp_world = copy.deepcopy(new_world)                           # make a backup of the world without any new movements
-            result = fun.move(temp_world, direction)                         # then we make the movement
-            print("\n----------------------TEMP WORLD\n")
-            temp_world[0].print_world()
-            if result == -1 :
+            direction = random.choice(new_world[0].available_movements[x][y])   # We choose on available movement 
+            new_world[0].available_movements[x][y].remove(direction)            # and we remove it from the list and
+            temp_world = copy.deepcopy(new_world)                               # make a backup of the world without any new movements
+            result = fun.move(temp_world, direction)                            # then we make the movement
+            finish = new_world[0].check_finish_condition()
+            
+            if finish == -1:
                 pass
-            elif result == 0 :
-                if not new_world[0].available_movements[x][y]:
-                    del queue[index]                        # delete the object to save "memory"
-                    index -= 1                              # move index back to be incremented again out of the loop
-                    break
-                else:
-                    pass                                    # you still have available moves but movement was not succesful
+
+
+            if result == -1 or result == 0 :
+                # do not add to queue
+                continue
             elif result == 1 :
                 temp_world = check_and_add_node(temp_world, queue)  # succesful movement, add to queue go on to next available
             elif result == 2 :
                 if len(temp_world[0].path) < best_path:     # we compare the path if it is better than the previously found
-                    best_world = copy.deepcopy(temp_world)                           # if there is a smaller path discovered
+                    best_world = copy.deepcopy(temp_world)                          # if there is a smaller path discovered
                     best_path = len(temp_world[0].path)                             # update the best world and path
 
         index += 1
