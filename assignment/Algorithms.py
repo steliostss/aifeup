@@ -193,6 +193,7 @@ def work_with_input():
         restart = False
 
         while res != 2:
+            list_world[0].print_world()
             movement = input("-------------- movement? >> ")
             while (len(movement) != 1 or movement not in checklist) and not restart:
                 movement = input("-------------- movement? >> ")
@@ -201,8 +202,8 @@ def work_with_input():
                 if list_world[0].lives > 0:
                     lives = list_world[0].lives
                     world = copy.deepcopy(backup_world)
+                    list_world = [ world ]
                     list_world[0].lives = lives
-                    # list_world[0].print_world()
                     print ("\n*** LIVES : ", list_world[0].lives, " MOVES: ", moves, "***\n")
                     restart = False
                     continue
@@ -214,7 +215,7 @@ def work_with_input():
                     restart = True
                     break
 
-            res = fun.move(world, movement)
+            res = fun.move(list_world, movement)
             # list_world[0].print_world()
             if res == 1:
                 moves += 1
