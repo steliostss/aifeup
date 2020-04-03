@@ -96,7 +96,7 @@ def BFS(list_world):
             finish = new_world[0].check_finish_condition()
             
             if finish == -1:
-                pass
+                result = -1
 
 
             if result == -1 or result == 0 :
